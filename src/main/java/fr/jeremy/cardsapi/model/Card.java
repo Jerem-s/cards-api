@@ -15,13 +15,13 @@ public class Card {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Enumerated
-    @Column(name = "color", nullable = false)
-    private ColorCard color;
+    @ManyToOne
+    @JoinColumn(name = "color_card")
+    private ColorCard colorCard;
 
-    @Enumerated
-    @Column(name = "value", nullable = false)
-    private ValueCard value;
+    @ManyToOne
+    @JoinColumn(name = "value_card")
+    private ValueCard valueCard;
 
     @Override
     public boolean equals(Object o) {

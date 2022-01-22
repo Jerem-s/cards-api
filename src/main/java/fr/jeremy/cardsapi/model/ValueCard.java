@@ -10,10 +10,6 @@ import javax.persistence.*;
 @Setter
 public class ValueCard {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
-    private Long id;
-
     @Column(name = "value")
     private String value;
 
