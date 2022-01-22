@@ -27,6 +27,14 @@ public class Deck {
             inverseJoinColumns = @JoinColumn(name = "card_id"))
     private Set<Card> cards = new LinkedHashSet<>();
 
+    @OneToOne(orphanRemoval = true)
+    @JoinColumn(name = "order_id")
+    private OrderCard order;
+
+    public void setOrder(OrderCard order) {
+        this.order = order;
+    }
+
     private void addCard(Card card) {
         cards.add(card);
     }

@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -14,6 +16,12 @@ public class OrderCard {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
+
+    @OneToMany(mappedBy = "orderColor")
+    private List<ColorCard> colors = new ArrayList<>();
+
+    @OneToMany(mappedBy = "orderCard")
+    private List<ValueCard> values = new ArrayList<>();
 
     @Override
     public boolean equals(Object o) {
