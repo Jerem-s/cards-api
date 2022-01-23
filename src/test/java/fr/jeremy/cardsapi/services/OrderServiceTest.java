@@ -36,10 +36,10 @@ class OrderServiceTest {
     @Test
     void should_retrieve_order() {
 
-        //WHEN
+        // WHEN
         OrderColorResponse orderColorResponse = this.orderService.findOrderColorByDeckName("32_CARDS");
 
-        //THEN
+        // THEN
         assertThat(orderColorResponse.getColorsOrder()).containsExactly("SPADES", "DIAMONDS");
     }
 

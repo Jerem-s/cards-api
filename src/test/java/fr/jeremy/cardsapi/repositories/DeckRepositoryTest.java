@@ -25,10 +25,10 @@ class DeckRepositoryTest {
     @Test
     void should_retrieve_deck_info() {
 
-        //WHEN
+        // WHEN
         OrderColorCardsInfo orderColorCardsInfo = deckRepository.findByName("32_CARDS");
 
-        //THEN
+        // THEN
         assertThat(orderColorCardsInfo.getName()).isEqualTo("32_CARDS");
         assertThat(orderColorCardsInfo.getOrder()).isNotPresent();
 
@@ -36,23 +36,23 @@ class DeckRepositoryTest {
 
     @Test
     void should_retrieve_order_colors() {
-        //GIVEN
+        // GIVEN
         OrderCard orderCard = new OrderCard();
         orderCard.setColorCards(List.of(new ColorCard("SPADES"), new ColorCard("DIAMONDS")));
         OrderCard save = orderCardRepository.save(orderCard);
-        Deck deck1 = deckRepository.findById(1L)
-                .map(deck -> {
-                    deck.setOrder(save);
-                    return deck;
-                }).get();
+        Deck deck1 = deckRepository.findById(1L).map(deck -> {
+            deck.setOrder(save);
+            return deck;
+        }).get();
         deckRepository.save(deck1);
 
-        //WHEN
+        // WHEN
         OrderColorCardsInfo orderColorCardsInfo = deckRepository.findByName(deck1.getName());
 
-        //THEN
+        // THEN
         assertThat(orderColorCardsInfo.getOrder()).isPresent();
-        assertThat(orderColorCardsInfo.getOrder().get().getColorCards()).containsExactly(new ColorCard("SPADES"), new ColorCard("DIAMONDS"));
+        assertThat(orderColorCardsInfo.getOrder().get().getColorCards()).containsExactly(new ColorCard("SPADES"),
+                new ColorCard("DIAMONDS"));
 
     }
 }

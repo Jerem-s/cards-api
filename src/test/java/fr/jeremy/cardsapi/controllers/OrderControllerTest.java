@@ -28,30 +28,27 @@ class OrderControllerTest {
 
     @Test
     void should_return_empty_set_of_colors() throws Exception {
-        //GIVEN
+        // GIVEN
         OrderColorResponse orderColorResponse = new OrderColorResponse();
         orderColorResponse.setDeckName("32_CARDS");
         orderColorResponse.setColorsOrder(List.of());
         when(orderService.findOrderColorByDeckName("32_CARDS")).thenReturn(orderColorResponse);
 
-        //WHEN
-        mockMvc.perform(get("/orders/32_CARDS/colors"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.deckName").value("32_CARDS"))
-                .andExpect(jsonPath("$.colorsOrder").isEmpty());
+        // WHEN
+        mockMvc.perform(get("/orders/32_CARDS/colors")).andExpect(status().isOk())
+                .andExpect(jsonPath("$.deckName").value("32_CARDS")).andExpect(jsonPath("$.colorsOrder").isEmpty());
     }
 
     @Test
     void should_return_set_of_colors() throws Exception {
-        //GIVEN
+        // GIVEN
         OrderColorResponse orderColorResponse = new OrderColorResponse();
         orderColorResponse.setDeckName("32_CARDS");
         orderColorResponse.setColorsOrder(List.of("SPADES", "DIAMONDS"));
         when(orderService.findOrderColorByDeckName("32_CARDS")).thenReturn(orderColorResponse);
 
-        //WHEN
-        mockMvc.perform(get("/orders/32_CARDS/colors"))
-                .andExpect(status().isOk())
+        // WHEN
+        mockMvc.perform(get("/orders/32_CARDS/colors")).andExpect(status().isOk())
                 .andExpect(jsonPath("$.deckName").value("32_CARDS"))
                 .andExpect(jsonPath("$.colorsOrder[0]").value("SPADES"))
                 .andExpect(jsonPath("$.colorsOrder[1]").value("DIAMONDS"));

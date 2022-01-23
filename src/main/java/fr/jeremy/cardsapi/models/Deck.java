@@ -22,9 +22,7 @@ public class Deck {
     private String name;
 
     @ManyToMany
-    @JoinTable(name = "deck_card",
-            joinColumns = @JoinColumn(name = "deck_id"),
-            inverseJoinColumns = @JoinColumn(name = "card_id"))
+    @JoinTable(name = "deck_card", joinColumns = @JoinColumn(name = "deck_id"), inverseJoinColumns = @JoinColumn(name = "card_id"))
     private Set<Card> cards = new LinkedHashSet<>();
 
     @ManyToOne
