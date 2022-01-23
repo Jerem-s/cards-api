@@ -2,15 +2,13 @@ package fr.jeremy.cardsapi.repositories.projections;
 
 import fr.jeremy.cardsapi.models.ColorCard;
 
-import java.util.LinkedHashSet;
+import java.util.Optional;
 import java.util.Set;
 
-public interface DeckInfo {
+public interface OrderColorCardsInfo {
     String getName();
 
-    default OrderCardInfo getOrder() {
-        return LinkedHashSet::new;
-    }
+    Optional<OrderCardInfo> getOrder();
 
     interface OrderCardInfo {
         Set<ColorCard> getColorCards();

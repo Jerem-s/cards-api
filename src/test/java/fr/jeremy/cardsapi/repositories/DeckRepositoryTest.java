@@ -3,7 +3,7 @@ package fr.jeremy.cardsapi.repositories;
 import fr.jeremy.cardsapi.models.ColorCard;
 import fr.jeremy.cardsapi.models.Deck;
 import fr.jeremy.cardsapi.models.OrderCard;
-import fr.jeremy.cardsapi.repositories.projections.DeckInfo;
+import fr.jeremy.cardsapi.repositories.projections.OrderColorCardsInfo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -26,10 +26,12 @@ class DeckRepositoryTest {
     void should_retrieve_deck_info() {
 
         //WHEN
-        DeckInfo deckInfo = deckRepository.findOrderColorCardsByName("32_CARDS");
+        OrderColorCardsInfo orderColorCardsInfo = deckRepository.findByName("32_CARDS");
 
         //THEN
-        assertThat(deckInfo.getName()).isEqualTo("32_CARDS");
+        assertThat(orderColorCardsInfo.getName()).isEqualTo("32_CARDS");
+        assertThat(orderColorCardsInfo.getOrder()).isNotPresent();
+
     }
 
     @Test
@@ -46,20 +48,11 @@ class DeckRepositoryTest {
         deckRepository.save(deck1);
 
         //WHEN
-        DeckInfo deckInfo = deckRepository.findOrderColorCardsByName(deck1.getName());
+        OrderColorCardsInfo orderColorCardsInfo = deckRepository.findByName(deck1.getName());
 
         //THEN
-        assertThat(deckInfo.getOrder().getColorCards()).containsExactly(new ColorCard("SPADES"), new ColorCard("DIAMONDS"));
+        assertThat(orderColorCardsInfo.getOrder()).isPresent();
+        assertThat(orderColorCardsInfo.getOrder().get().getColorCards()).containsExactly(new ColorCard("SPADES"), new ColorCard("DIAMONDS"));
 
-    }
-
-    @Test
-    void should_return_empty_set() {
-        //WHEN
-        DeckInfo deckInfo = deckRepository.findOrderColorCardsByName("52_CARDS");
-
-        //THEN
-        assertThat(deckInfo.getOrder()).isNotNull();
-        assertThat(deckInfo.getOrder().getColorCards()).isEmpty();
     }
 }

@@ -1,13 +1,16 @@
 package fr.jeremy.cardsapi.services;
 
+import fr.jeremy.cardsapi.dto.response.OrderColorResponse;
+import fr.jeremy.cardsapi.mappers.OrderCardColorMapper;
 import fr.jeremy.cardsapi.models.ColorCard;
 import fr.jeremy.cardsapi.repositories.DeckRepository;
-import fr.jeremy.cardsapi.repositories.projections.DeckInfo;
+import fr.jeremy.cardsapi.repositories.projections.OrderColorCardsInfo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
@@ -16,14 +19,17 @@ import static org.mockito.Mockito.when;
 class OrderServiceTest {
 
     private OrderService orderService;
-    private DeckRepository deckRepository;
 
     @BeforeEach
     void setUp() {
-        this.deckRepository = mock(DeckRepository.class);
-        this.orderService = new OrderService(deckRepository);
+        DeckRepository deckRepository = mock(DeckRepository.class);
+        OrderCardColorMapper orderCardColorMapper = mock(OrderCardColorMapper.class);
+        this.orderService = new OrderService(deckRepository, orderCardColorMapper);
 
-        when(deckRepository.findOrderColorCardsByName("32_CARDS")).thenReturn(new DeckInfo32Cards());
+        OrderColorCardsInfo32Cards colorCardsInfo32Cards = new OrderColorCardsInfo32Cards();
+
+        when(deckRepository.findByName("32_CARDS")).thenReturn(colorCardsInfo32Cards);
+        when(orderCardColorMapper.map(colorCardsInfo32Cards)).thenReturn(new OrderColorResponseMock());
 
     }
 
@@ -31,45 +37,39 @@ class OrderServiceTest {
     void should_retrieve_order() {
 
         //WHEN
-        Set<ColorCard> cardsOrder = this.orderService.findOrderColorByDeckName("32_CARDS");
+        OrderColorResponse orderColorResponse = this.orderService.findOrderColorByDeckName("32_CARDS");
 
         //THEN
-        assertThat(cardsOrder).containsExactly(new ColorCard("SPADES"), new ColorCard("DIAMONDS"));
+        assertThat(orderColorResponse.getColorsOrder()).containsExactly("SPADES", "DIAMONDS");
     }
 
-    @Test
-    void should_retrieve_order_even_if_order_is_not_provided() {
-        //GIVEN
-        when(deckRepository.findOrderColorCardsByName("32_CARDS")).thenReturn(new DeckInfo32Cards_NoOrder());
-
-        //WHEN
-        Set<ColorCard> cardsOrder = this.orderService.findOrderColorByDeckName("32_CARDS");
-
-        //THEN
-        assertThat(cardsOrder).isEmpty();
-    }
-
-    static class DeckInfo32Cards implements DeckInfo {
+    static class OrderColorCardsInfo32Cards implements OrderColorCardsInfo {
         @Override
         public String getName() {
             return "32_CARDS";
         }
 
         @Override
-        public OrderCardInfo getOrder() {
-            return () -> {
+        public Optional<OrderCardInfo> getOrder() {
+            return Optional.of(() -> {
                 LinkedHashSet<ColorCard> colorCards = new LinkedHashSet<>();
                 colorCards.add(new ColorCard("SPADES"));
                 colorCards.add(new ColorCard("DIAMONDS"));
                 return colorCards;
-            };
+            });
         }
     }
 
-    static class DeckInfo32Cards_NoOrder implements DeckInfo {
+    static class OrderColorResponseMock extends OrderColorResponse {
         @Override
-        public String getName() {
+        public String getDeckName() {
             return "32_CARDS";
         }
+
+        @Override
+        public List<String> getColorsOrder() {
+            return List.of("SPADES", "DIAMONDS");
+        }
     }
+
 }
