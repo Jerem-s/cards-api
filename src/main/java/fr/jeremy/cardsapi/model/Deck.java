@@ -12,7 +12,7 @@ import java.util.Set;
 @Getter
 public class Deck {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     @Setter
     private Long id;
@@ -26,6 +26,14 @@ public class Deck {
             joinColumns = @JoinColumn(name = "deck_id"),
             inverseJoinColumns = @JoinColumn(name = "card_id"))
     private Set<Card> cards = new LinkedHashSet<>();
+
+    @OneToOne(orphanRemoval = true)
+    @JoinColumn(name = "order_id")
+    private OrderCard order;
+
+    public void setOrder(OrderCard order) {
+        this.order = order;
+    }
 
     private void addCard(Card card) {
         cards.add(card);
