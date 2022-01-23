@@ -19,6 +19,7 @@ public class OrderCard {
     @JoinTable(name = "order_card_color_card", joinColumns = @JoinColumn(name = "order_card_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "color_card_color", referencedColumnName = "color"))
     private Set<ColorCard> colorCards = new LinkedHashSet<>();
 
+    // TODO separate
     @ManyToMany
     @JoinTable(name = "order_card_value_card", joinColumns = @JoinColumn(name = "order_card_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "value_card_value", referencedColumnName = "value"))
     private Set<ValueCard> valueCards = new LinkedHashSet<>();
