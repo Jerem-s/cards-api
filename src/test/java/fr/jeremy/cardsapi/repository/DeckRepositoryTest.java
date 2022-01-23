@@ -52,4 +52,14 @@ class DeckRepositoryTest {
         assertThat(deckInfo.getOrder().getColorCards()).containsExactly(new ColorCard("SPADES"), new ColorCard("DIAMONDS"));
 
     }
+
+    @Test
+    void should_return_empty_set() {
+        //WHEN
+        DeckInfo deckInfo = deckRepository.findOrderColorCardsByName("52_CARDS");
+
+        //THEN
+        assertThat(deckInfo.getOrder()).isNotNull();
+        assertThat(deckInfo.getOrder().getColorCards()).isEmpty();
+    }
 }
