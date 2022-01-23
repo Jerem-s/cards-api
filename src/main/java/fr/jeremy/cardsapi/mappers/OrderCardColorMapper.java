@@ -14,13 +14,9 @@ public class OrderCardColorMapper implements Mapper<OrderColorCardsInfo, OrderCo
     public OrderColorResponse map(OrderColorCardsInfo orderColorCardsInfo) {
         OrderColorResponse orderColorResponse = new OrderColorResponse();
         orderColorResponse.setDeckName(orderColorCardsInfo.getName());
-        orderColorResponse.setColorsOrder(
-                orderColorCardsInfo
-                        .getOrder()
-                        .map(OrderColorCardsInfo.OrderCardInfo::getColorCards)
-                        .orElse(new LinkedHashSet<>())
-                        .stream().map(ColorCard::getColor)
-                        .collect(Collectors.toList()));
+        orderColorResponse
+                .setColorsOrder(orderColorCardsInfo.getOrder().map(OrderColorCardsInfo.OrderCardInfo::getColorCards)
+                        .orElse(new LinkedHashSet<>()).stream().map(ColorCard::getColor).collect(Collectors.toList()));
         return orderColorResponse;
     }
 }

@@ -16,7 +16,7 @@ class OrderCardColorMapperTest {
 
     @Test
     void should_map() {
-        //GIVEN
+        // GIVEN
         OrderColorCardsInfo orderColorCardsInfo = new OrderColorCardsInfo() {
             @Override
             public String getName() {
@@ -28,17 +28,17 @@ class OrderCardColorMapperTest {
                 return Optional.empty();
             }
         };
-        //WHEN
+        // WHEN
         OrderColorResponse orderColorResponse = orderCardColorMapper.map(orderColorCardsInfo);
 
-        //THEN
+        // THEN
         assertThat(orderColorResponse.getDeckName()).isEqualTo("32_CARDS");
         assertThat(orderColorResponse.getColorsOrder()).isEmpty();
     }
 
     @Test
     void should_map_colors() {
-        //GIVEN
+        // GIVEN
         OrderColorCardsInfo orderColorCardsInfo = new OrderColorCardsInfo() {
             @Override
             public String getName() {
@@ -56,10 +56,10 @@ class OrderCardColorMapperTest {
             }
         };
 
-        //WHEN
+        // WHEN
         OrderColorResponse orderColorResponse = orderCardColorMapper.map(orderColorCardsInfo);
 
-        //THEN
+        // THEN
         assertThat(orderColorResponse.getDeckName()).isEqualTo("32_CARDS");
         assertThat(orderColorResponse.getColorsOrder()).containsExactly("SPADES", "DIAMONDS");
     }
