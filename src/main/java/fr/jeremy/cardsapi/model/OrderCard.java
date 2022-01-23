@@ -1,27 +1,31 @@
 package fr.jeremy.cardsapi.model;
 
 import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Getter
-@Setter
 public class OrderCard {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @OneToMany(mappedBy = "orderColor")
-    private List<ColorCard> colors = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(name = "order_card_color_card",
+            joinColumns = @JoinColumn(name = "order_card_id"),
+            inverseJoinColumns = @JoinColumn(name = "color_card_color"))
+    private Set<ColorCard> colorCard = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "orderCard")
-    private List<ValueCard> values = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(name = "order_card_value_card",
+            joinColumns = @JoinColumn(name = "order_card_id"),
+            inverseJoinColumns = @JoinColumn(name = "value_card_value"))
+    private Set<ValueCard> valueCard = new LinkedHashSet<>();
 
     @Override
     public boolean equals(Object o) {

@@ -12,7 +12,7 @@ import java.util.Set;
 @Getter
 public class Deck {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     @Setter
     private Long id;
