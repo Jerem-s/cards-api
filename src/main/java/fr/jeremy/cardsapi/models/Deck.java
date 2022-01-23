@@ -26,11 +26,19 @@ public class Deck {
     private Set<Card> cards = new LinkedHashSet<>();
 
     @ManyToOne
-    @JoinColumn(name = "order_card_id")
-    private OrderCard order;
+    @JoinColumn(name = "order_color_id")
+    private OrderColor orderColor;
 
-    public void setOrder(OrderCard orderCard) {
-        this.order = orderCard;
+    @ManyToOne
+    @JoinColumn(name = "order_value_id")
+    private OrderValue orderValue;
+
+    public void setOrderValue(OrderValue orderValue) {
+        this.orderValue = orderValue;
+    }
+
+    public void setOrderColor(OrderColor orderColor) {
+        this.orderColor = orderColor;
     }
 
     private void addCard(Card card) {

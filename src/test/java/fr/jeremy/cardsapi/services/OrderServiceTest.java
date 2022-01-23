@@ -50,7 +50,7 @@ class OrderServiceTest {
         }
 
         @Override
-        public Optional<OrderCardInfo> getOrder() {
+        public Optional<OrderCardInfo> getOrderColor() {
             return Optional.of(() -> {
                 LinkedHashSet<ColorCard> colorCards = new LinkedHashSet<>();
                 colorCards.add(new ColorCard("SPADES"));
