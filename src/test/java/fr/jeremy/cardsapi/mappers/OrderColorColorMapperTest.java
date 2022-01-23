@@ -10,7 +10,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class OrderCardColorMapperTest {
+class OrderColorColorMapperTest {
 
     OrderCardColorMapper orderCardColorMapper = new OrderCardColorMapper();
 
@@ -24,7 +24,7 @@ class OrderCardColorMapperTest {
             }
 
             @Override
-            public Optional<OrderCardInfo> getOrder() {
+            public Optional<OrderCardInfo> getOrderColor() {
                 return Optional.empty();
             }
         };
@@ -46,7 +46,7 @@ class OrderCardColorMapperTest {
             }
 
             @Override
-            public Optional<OrderCardInfo> getOrder() {
+            public Optional<OrderCardInfo> getOrderColor() {
                 return Optional.of(() -> {
                     LinkedHashSet<ColorCard> colorCards = new LinkedHashSet<>();
                     colorCards.add(new ColorCard("SPADES"));

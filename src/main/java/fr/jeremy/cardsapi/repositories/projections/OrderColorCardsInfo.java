@@ -8,7 +8,7 @@ import java.util.Set;
 public interface OrderColorCardsInfo {
     String getName();
 
-    Optional<OrderCardInfo> getOrder();
+    Optional<OrderCardInfo> getOrderColor();
 
     interface OrderCardInfo {
         Set<ColorCard> getColorCards();

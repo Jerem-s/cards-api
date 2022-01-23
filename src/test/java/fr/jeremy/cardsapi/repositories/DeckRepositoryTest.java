@@ -2,7 +2,7 @@ package fr.jeremy.cardsapi.repositories;
 
 import fr.jeremy.cardsapi.models.ColorCard;
 import fr.jeremy.cardsapi.models.Deck;
-import fr.jeremy.cardsapi.models.OrderCard;
+import fr.jeremy.cardsapi.models.OrderColor;
 import fr.jeremy.cardsapi.repositories.projections.OrderColorCardsInfo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ class DeckRepositoryTest {
     private DeckRepository deckRepository;
 
     @Autowired
-    private OrderCardRepository orderCardRepository;
+    private OrderColorRepository orderColorRepository;
 
     @Test
     void should_retrieve_deck_info() {
@@ -30,18 +30,18 @@ class DeckRepositoryTest {
 
         // THEN
         assertThat(orderColorCardsInfo.getName()).isEqualTo("32_CARDS");
-        assertThat(orderColorCardsInfo.getOrder()).isNotPresent();
+        assertThat(orderColorCardsInfo.getOrderColor()).isNotPresent();
 
     }
 
     @Test
     void should_retrieve_order_colors() {
         // GIVEN
-        OrderCard orderCard = new OrderCard();
-        orderCard.setColorCards(List.of(new ColorCard("SPADES"), new ColorCard("DIAMONDS")));
-        OrderCard save = orderCardRepository.save(orderCard);
+        OrderColor orderColor = new OrderColor();
+        orderColor.setColorCards(List.of(new ColorCard("SPADES"), new ColorCard("DIAMONDS")));
+        OrderColor save = orderColorRepository.save(orderColor);
         Deck deck1 = deckRepository.findById(1L).map(deck -> {
-            deck.setOrder(save);
+            deck.setOrderColor(save);
             return deck;
         }).get();
         deckRepository.save(deck1);
@@ -50,8 +50,8 @@ class DeckRepositoryTest {
         OrderColorCardsInfo orderColorCardsInfo = deckRepository.findByName(deck1.getName());
 
         // THEN
-        assertThat(orderColorCardsInfo.getOrder()).isPresent();
-        assertThat(orderColorCardsInfo.getOrder().get().getColorCards()).containsExactly(new ColorCard("SPADES"),
+        assertThat(orderColorCardsInfo.getOrderColor()).isPresent();
+        assertThat(orderColorCardsInfo.getOrderColor().get().getColorCards()).containsExactly(new ColorCard("SPADES"),
                 new ColorCard("DIAMONDS"));
 
     }
