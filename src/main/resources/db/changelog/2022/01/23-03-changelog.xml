@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1642946078617-1" author="jerem (generated)">
+        <addColumn tableName="deck">
+            <column name="order_card_id" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1642946078617-2" author="jerem (generated)">
+        <addForeignKeyConstraint baseColumnNames="order_card_id" baseTableName="deck"
+                                 constraintName="FK_DECK_ON_ORDER_CARD" referencedColumnNames="id"
+                                 referencedTableName="order_card"/>
+    </changeSet>
+    <changeSet id="1642946078617-3" author="jerem (generated)">
+        <dropForeignKeyConstraint baseTableName="deck" constraintName="fk_deck_on_order"/>
+    </changeSet>
+    <changeSet id="1642946078617-4" author="jerem (generated)">
+        <dropColumn columnName="order_id" tableName="deck"/>
+    </changeSet>
+
+    <changeSet id="1642946078617-5" author="jerem">
+        <addAutoIncrement tableName="order_card" columnName="id" columnDataType="bigint"/>
+    </changeSet>
+
+</databaseChangeLog>

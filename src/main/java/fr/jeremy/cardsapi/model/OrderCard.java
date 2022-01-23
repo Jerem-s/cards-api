@@ -4,43 +4,32 @@ import lombok.Getter;
 
 import javax.persistence.*;
 import java.util.LinkedHashSet;
-import java.util.Objects;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Getter
 public class OrderCard {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
     @ManyToMany
     @JoinTable(name = "order_card_color_card",
-            joinColumns = @JoinColumn(name = "order_card_id"),
-            inverseJoinColumns = @JoinColumn(name = "color_card_color"))
-    private Set<ColorCard> colorCard = new LinkedHashSet<>();
+            joinColumns = @JoinColumn(name = "order_card_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "color_card_color", referencedColumnName = "color"))
+    private Set<ColorCard> colorCards = new LinkedHashSet<>();
 
     @ManyToMany
     @JoinTable(name = "order_card_value_card",
-            joinColumns = @JoinColumn(name = "order_card_id"),
-            inverseJoinColumns = @JoinColumn(name = "value_card_value"))
-    private Set<ValueCard> valueCard = new LinkedHashSet<>();
+            joinColumns = @JoinColumn(name = "order_card_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "value_card_value", referencedColumnName = "value"))
+    private Set<ValueCard> valueCards = new LinkedHashSet<>();
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        OrderCard orderCard = (OrderCard) o;
-        return Objects.equals(id, orderCard.id);
+    public void setColorCards(List<ColorCard> colorCards) {
+        this.colorCards.clear();
+        this.colorCards.addAll(colorCards);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 }
