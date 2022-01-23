@@ -1,6 +1,6 @@
-package fr.jeremy.cardsapi.repository.projections;
+package fr.jeremy.cardsapi.repositories.projections;
 
-import fr.jeremy.cardsapi.model.ColorCard;
+import fr.jeremy.cardsapi.models.ColorCard;
 
 import java.util.LinkedHashSet;
 import java.util.Set;

@@ -1,4 +1,4 @@
-package fr.jeremy.cardsapi.model;
+package fr.jeremy.cardsapi.models;
 
 import lombok.Getter;
 

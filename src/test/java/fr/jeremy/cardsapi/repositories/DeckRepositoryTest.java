@@ -1,9 +1,9 @@
-package fr.jeremy.cardsapi.repository;
+package fr.jeremy.cardsapi.repositories;
 
-import fr.jeremy.cardsapi.model.ColorCard;
-import fr.jeremy.cardsapi.model.Deck;
-import fr.jeremy.cardsapi.model.OrderCard;
-import fr.jeremy.cardsapi.repository.projections.DeckInfo;
+import fr.jeremy.cardsapi.models.ColorCard;
+import fr.jeremy.cardsapi.models.Deck;
+import fr.jeremy.cardsapi.models.OrderCard;
+import fr.jeremy.cardsapi.repositories.projections.DeckInfo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;

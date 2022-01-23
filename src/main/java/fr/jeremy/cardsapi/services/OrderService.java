@@ -1,8 +1,8 @@
 package fr.jeremy.cardsapi.services;
 
-import fr.jeremy.cardsapi.model.ColorCard;
-import fr.jeremy.cardsapi.repository.DeckRepository;
-import fr.jeremy.cardsapi.repository.projections.DeckInfo;
+import fr.jeremy.cardsapi.models.ColorCard;
+import fr.jeremy.cardsapi.repositories.DeckRepository;
+import fr.jeremy.cardsapi.repositories.projections.DeckInfo;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;

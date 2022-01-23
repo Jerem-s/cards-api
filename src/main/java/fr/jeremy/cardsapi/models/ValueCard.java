@@ -1,8 +1,6 @@
-package fr.jeremy.cardsapi.model;
+package fr.jeremy.cardsapi.models;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Column;
@@ -13,13 +11,10 @@ import java.util.Objects;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-public class ColorCard {
-
+public class ValueCard {
     @Id
-    @Column(name = "color")
-    private String color;
+    @Column(name = "value")
+    private String value;
 
     @Override
     public boolean equals(Object o) {
@@ -29,12 +24,12 @@ public class ColorCard {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        ColorCard colorCard = (ColorCard) o;
-        return Objects.equals(color, colorCard.color);
+        ValueCard valueCard = (ValueCard) o;
+        return Objects.equals(value, valueCard.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(color);
+        return Objects.hash(value);
     }
 }

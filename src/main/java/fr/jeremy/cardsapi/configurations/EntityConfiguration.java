@@ -1,4 +1,4 @@
-package fr.jeremy.cardsapi.config;
+package fr.jeremy.cardsapi.configurations;
 
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
