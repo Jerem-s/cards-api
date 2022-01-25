@@ -24,13 +24,8 @@ public class OrderValue {
     @Column(name = "created_at", nullable = false)
     private ZonedDateTime createdAt;
 
-
     @Override
     public String toString() {
-        return "OrderValue{" +
-                "id=" + id +
-                ", valueCards=" + valueCards +
-                ", createdAt=" + createdAt +
-                '}';
+        return "OrderValue{" + "id=" + id + ", valueCards=" + valueCards + ", createdAt=" + createdAt + '}';
     }
 }
