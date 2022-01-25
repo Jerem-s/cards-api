@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1643120191866-1" author="jerem (generated)">
+        <createTable tableName="card">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_card"/>
+            </column>
+            <column name="color_card" type="VARCHAR(255)"/>
+            <column name="value_card" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1643120191866-2" author="jerem (generated)">
+        <createTable tableName="color_card">
+            <column name="color" type="VARCHAR(255)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_colorcard"/>
+            </column>
+            <column name="order_color_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1643120191866-3" author="jerem (generated)">
+        <createTable tableName="order_color">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_ordercolor"/>
+            </column>
+            <column name="created_at" type="timestamp with time zone">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1643120191866-4" author="jerem (generated)">
+        <createTable tableName="order_value">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_ordervalue"/>
+            </column>
+            <column name="created_at" type="timestamp with time zone">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1643120191866-5" author="jerem (generated)">
+        <createTable tableName="value_card">
+            <column name="value" type="VARCHAR(255)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_valuecard"/>
+            </column>
+            <column name="order_value_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1643120191866-6" author="jerem (generated)">
+        <addForeignKeyConstraint baseColumnNames="color_card" baseTableName="card"
+                                 constraintName="FK_CARD_ON_COLOR_CARD" referencedColumnNames="color"
+                                 referencedTableName="color_card"/>
+    </changeSet>
+    <changeSet id="1643120191866-7" author="jerem (generated)">
+        <addForeignKeyConstraint baseColumnNames="value_card" baseTableName="card"
+                                 constraintName="FK_CARD_ON_VALUE_CARD" referencedColumnNames="value"
+                                 referencedTableName="value_card"/>
+    </changeSet>
+    <changeSet id="1643120191866-8" author="jerem (generated)">
+        <addForeignKeyConstraint baseColumnNames="order_color_id" baseTableName="color_card"
+                                 constraintName="FK_COLORCARD_ON_ORDER_COLOR" referencedColumnNames="id"
+                                 referencedTableName="order_color"/>
+    </changeSet>
+    <changeSet id="1643120191866-9" author="jerem (generated)">
+        <addForeignKeyConstraint baseColumnNames="order_value_id" baseTableName="value_card"
+                                 constraintName="FK_VALUECARD_ON_ORDER_VALUE" referencedColumnNames="id"
+                                 referencedTableName="order_value"/>
+    </changeSet>
+
+</databaseChangeLog>
