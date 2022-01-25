@@ -19,6 +19,13 @@ public class ColorCard {
     @JoinColumn(name = "order_color_id")
     private OrderColor orderColor;
 
+    public ColorCard() {
+    }
+
+    public ColorCard(String color) {
+        this.color = color;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
