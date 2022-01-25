@@ -19,6 +19,10 @@ public class ColorCard {
     @Column(name = "color")
     private String color;
 
+    @ManyToOne
+    @JoinColumn(name = "order_color_id")
+    private OrderColor orderColor;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

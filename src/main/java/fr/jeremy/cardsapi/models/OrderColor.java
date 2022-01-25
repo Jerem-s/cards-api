@@ -17,7 +17,7 @@ public class OrderColor {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @OneToMany
+    @OneToMany(mappedBy = "orderColor", orphanRemoval = true)
     private Set<ColorCard> colorCard = new LinkedHashSet<>();
 
     @Column(name = "created_at", nullable = false)
