@@ -41,7 +41,7 @@ class OrderColorRepositoryTest {
         orderColorRepository.save(entity);
 
         // WHEN
-        Optional<OrderColor> result = orderColorRepository.findLastByOrderByCreatedAtAsc();
+        Optional<OrderColor> result = orderColorRepository.findFirstByOrderByCreatedAtDesc();
 
         // THEN
         assertThat(result.get().getColorCards()).containsExactly(spades, hearts, diamonds, clubs);
@@ -61,7 +61,7 @@ class OrderColorRepositoryTest {
         orderColorRepository.save(orderColor2);
 
         // WHEN
-        Optional<OrderColor> result = orderColorRepository.findLastByOrderByCreatedAtAsc();
+        Optional<OrderColor> result = orderColorRepository.findFirstByOrderByCreatedAtDesc();
 
         // THEN
         assertThat(result.get().getCreatedAt()).isAfter(orderColor1.getCreatedAt());

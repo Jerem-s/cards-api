@@ -7,6 +7,6 @@ import java.util.Optional;
 
 public interface OrderColorRepository extends JpaRepository<OrderColor, Long> {
 
-    Optional<OrderColor> findLastByOrderByCreatedAtAsc();
+    Optional<OrderColor> findFirstByOrderByCreatedAtDesc();
 
 }

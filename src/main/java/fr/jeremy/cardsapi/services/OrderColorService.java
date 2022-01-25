@@ -27,7 +27,7 @@ public class OrderColorService {
     }
 
     public OrderColorResponse findLast() {
-        return this.orderColorRepository.findLastByOrderByCreatedAtAsc().map(orderColorMapper::mapToDto)
+        return this.orderColorRepository.findFirstByOrderByCreatedAtDesc().map(orderColorMapper::mapToDto)
                 .orElseGet(() -> {
                     OrderColorResponse orderColorResponse = new OrderColorResponse();
                     orderColorResponse.setColors(List.of("SPADES", "DIAMONDS", "HEARTS", "CLUBS"));

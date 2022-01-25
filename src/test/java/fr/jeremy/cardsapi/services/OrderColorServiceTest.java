@@ -32,8 +32,10 @@ class OrderColorServiceTest {
         OrderColorRequest orderColorRequest = new OrderColorRequest();
         OrderColor orderColor = new OrderColor();
         OrderColor orderColorSaved = new OrderColor();
+        OrderColorResponse orderColorResponseMapped = new OrderColorResponse();
         when(orderColorMapper.mapToEntity(orderColorRequest)).thenReturn(orderColor);
         when(orderColorRepository.save(orderColor)).thenReturn(orderColorSaved);
+        when(orderColorMapper.mapToDto(orderColorSaved)).thenReturn(orderColorResponseMapped);
 
         // WHEN
         OrderColorResponse orderColorResponse = orderColorService.save(orderColorRequest);
@@ -42,21 +44,21 @@ class OrderColorServiceTest {
         verify(orderColorMapper).mapToEntity(orderColorRequest);
         verify(orderColorRepository).save(orderColor);
         verify(orderColorMapper).mapToDto(orderColorSaved);
-        assertThat(orderColorResponse).isNotNull();
+        assertThat(orderColorResponse).isEqualTo(orderColorResponseMapped);
     }
 
     @Test
     void should_find_last() {
         // GIVEN
         OrderColor orderColor = new OrderColor();
-        when(orderColorRepository.findLastByOrderByCreatedAtAsc()).thenReturn(Optional.of(orderColor));
+        when(orderColorRepository.findFirstByOrderByCreatedAtDesc()).thenReturn(Optional.of(orderColor));
         when(orderColorMapper.mapToDto(orderColor)).thenReturn(new OrderColorResponse());
 
         // WHEN
         OrderColorResponse orderColorResponse = orderColorService.findLast();
 
         // THEN
-        verify(orderColorRepository).findLastByOrderByCreatedAtAsc();
+        verify(orderColorRepository).findFirstByOrderByCreatedAtDesc();
         verify(orderColorMapper).mapToDto(orderColor);
         assertThat(orderColorResponse).isNotNull();
     }
@@ -64,13 +66,13 @@ class OrderColorServiceTest {
     @Test
     void should_find_last_even_if_no_data_in_repo() {
         // GIVEN
-        when(orderColorRepository.findLastByOrderByCreatedAtAsc()).thenReturn(Optional.empty());
+        when(orderColorRepository.findFirstByOrderByCreatedAtDesc()).thenReturn(Optional.empty());
 
         // WHEN
         OrderColorResponse orderColorResponse = orderColorService.findLast();
 
         // THEN
-        verify(orderColorRepository).findLastByOrderByCreatedAtAsc();
+        verify(orderColorRepository).findFirstByOrderByCreatedAtDesc();
         assertThat(orderColorResponse).isNotNull();
         assertThat(orderColorResponse.getColors()).containsExactly("SPADES", "DIAMONDS", "HEARTS", "CLUBS");
     }
