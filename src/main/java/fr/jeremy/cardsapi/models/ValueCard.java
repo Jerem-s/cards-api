@@ -18,6 +18,13 @@ public class ValueCard {
     @JoinColumn(name = "order_value_id")
     private OrderValue orderValue;
 
+    public ValueCard() {
+    }
+
+    public ValueCard(String value) {
+        this.value = value;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
