@@ -5,8 +5,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -19,17 +19,18 @@ public class OrderValue {
     private Long id;
 
     @OneToMany(mappedBy = "orderValue", orphanRemoval = true)
-    private Set<ValueCard> valueCard = new LinkedHashSet<>();
+    private List<ValueCard> valueCards = new ArrayList<>();
 
     @Column(name = "created_at", nullable = false)
     private ZonedDateTime createdAt;
 
-    public void setCreatedAt(ZonedDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
 
-    public void setValueCard(Set<ValueCard> valueCard) {
-        this.valueCard = valueCard;
+    @Override
+    public String toString() {
+        return "OrderValue{" +
+                "id=" + id +
+                ", valueCards=" + valueCards +
+                ", createdAt=" + createdAt +
+                '}';
     }
-
 }

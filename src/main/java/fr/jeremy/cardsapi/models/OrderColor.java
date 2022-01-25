@@ -5,8 +5,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -18,12 +18,17 @@ public class OrderColor {
     private Long id;
 
     @OneToMany(mappedBy = "orderColor", orphanRemoval = true)
-    private Set<ColorCard> colorCard = new LinkedHashSet<>();
+    private List<ColorCard> colorCards = new ArrayList<>();
 
     @Column(name = "created_at", nullable = false)
     private ZonedDateTime createdAt;
 
-    public void setColorCard(Set<ColorCard> colorCard) {
-        this.colorCard = colorCard;
+    @Override
+    public String toString() {
+        return "OrderColor{" +
+                "id=" + id +
+                ", colorCards=" + colorCards +
+                ", createdAt=" + createdAt +
+                '}';
     }
 }
