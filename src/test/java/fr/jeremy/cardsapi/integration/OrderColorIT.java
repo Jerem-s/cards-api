@@ -12,6 +12,7 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import java.util.List;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -38,6 +39,16 @@ public class OrderColorIT extends AbstractIntegrationConfig {
 
         // THEN
         perform.andExpect(status().isCreated());
+    }
+
+    @Test
+    void should_get_order_colors() throws Exception {
+
+        // WHEN
+        ResultActions perform = this.mockMvc.perform(get("/order-colors/last"));
+
+        // THEN
+        perform.andExpect(status().isOk());
     }
 
 }

@@ -21,4 +21,9 @@ public class OrderColorController {
     public OrderColorResponse create(@RequestBody OrderColorRequest orderColorRequest) {
         return orderColorService.save(orderColorRequest);
     }
+
+    @GetMapping("/last")
+    public OrderColorResponse getLast() {
+        return this.orderColorService.findLast();
+    }
 }

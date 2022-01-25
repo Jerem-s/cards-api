@@ -7,6 +7,8 @@ import fr.jeremy.cardsapi.models.OrderColor;
 import fr.jeremy.cardsapi.repositories.OrderColorRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class OrderColorService {
 
@@ -22,6 +24,14 @@ public class OrderColorService {
         OrderColor orderColor = orderColorMapper.mapToEntity(orderColorRequest);
         OrderColor save = this.orderColorRepository.save(orderColor);
         return orderColorMapper.mapToDto(save);
+    }
 
+    public OrderColorResponse findLast() {
+        return this.orderColorRepository.findLastByOrderByCreatedAtAsc().map(orderColorMapper::mapToDto)
+                .orElseGet(() -> {
+                    OrderColorResponse orderColorResponse = new OrderColorResponse();
+                    orderColorResponse.setColors(List.of("SPADES", "DIAMONDS", "HEARTS", "CLUBS"));
+                    return orderColorResponse;
+                });
     }
 }
