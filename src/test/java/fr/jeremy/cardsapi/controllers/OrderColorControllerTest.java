@@ -17,6 +17,7 @@ import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -53,6 +54,24 @@ class OrderColorControllerTest {
 
         // THEN
         perform.andExpect(status().isCreated()).andExpect(jsonPath("$.id").value(1))
+                .andExpect(jsonPath("$.colors[0]").value("SPADES")).andExpect(jsonPath("$.colors[1]").value("DIAMONDS"))
+                .andExpect(jsonPath("$.colors[2]").value("HEARTS")).andExpect(jsonPath("$.colors[3]").value("CLUBS"));
+    }
+
+    @Test
+    void should_get_last_order_colors() throws Exception {
+        // GIVEN
+        OrderColorResponse orderColorResponse = new OrderColorResponse();
+        orderColorResponse.setId(1L);
+        orderColorResponse.setColors(List.of("SPADES", "DIAMONDS", "HEARTS", "CLUBS"));
+
+        when(orderColorService.findLast()).thenReturn(orderColorResponse);
+
+        // WHEN
+        ResultActions perform = this.mockMvc.perform(get("/order-colors/last"));
+
+        // THEN
+        perform.andExpect(status().isOk()).andExpect(jsonPath("$.id").value(1))
                 .andExpect(jsonPath("$.colors[0]").value("SPADES")).andExpect(jsonPath("$.colors[1]").value("DIAMONDS"))
                 .andExpect(jsonPath("$.colors[2]").value("HEARTS")).andExpect(jsonPath("$.colors[3]").value("CLUBS"));
     }
