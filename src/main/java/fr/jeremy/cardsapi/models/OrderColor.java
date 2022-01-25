@@ -25,10 +25,6 @@ public class OrderColor {
 
     @Override
     public String toString() {
-        return "OrderColor{" +
-                "id=" + id +
-                ", colorCards=" + colorCards +
-                ", createdAt=" + createdAt +
-                '}';
+        return "OrderColor{" + "id=" + id + ", colorCards=" + colorCards + ", createdAt=" + createdAt + '}';
     }
 }

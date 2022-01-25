@@ -38,8 +38,6 @@ public class ColorCard {
 
     @Override
     public String toString() {
-        return "ColorCard{" +
-                "color='" + color + '\'' +
-                '}';
+        return "ColorCard{" + "color='" + color + '\'' + '}';
     }
 }

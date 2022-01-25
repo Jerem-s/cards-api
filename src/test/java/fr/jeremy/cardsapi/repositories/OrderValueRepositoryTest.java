@@ -41,10 +41,10 @@ class OrderValueRepositoryTest {
         entity.setCreatedAt(ZonedDateTime.now());
         orderValueRepository.save(entity);
 
-        //WHEN
+        // WHEN
         Optional<OrderValue> result = orderValueRepository.findFirstByOrderByCreatedAtDesc();
 
-        //THEN
+        // THEN
         assertThat(result.get().getValueCards()).containsExactly(ace, four, two, seven);
     }
 
@@ -60,11 +60,10 @@ class OrderValueRepositoryTest {
         orderValue2.setCreatedAt(ZonedDateTime.now().plusDays(1));
         orderValueRepository.save(orderValue2);
 
-
-        //WHEN
+        // WHEN
         Optional<OrderValue> result = orderValueRepository.findFirstByOrderByCreatedAtDesc();
 
-        //THEN
+        // THEN
         assertThat(result.get().getCreatedAt()).isAfter(orderValue1.getCreatedAt());
 
     }

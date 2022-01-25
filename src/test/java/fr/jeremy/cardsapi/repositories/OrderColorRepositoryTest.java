@@ -40,10 +40,10 @@ class OrderColorRepositoryTest {
         entity.setCreatedAt(ZonedDateTime.now());
         orderColorRepository.save(entity);
 
-        //WHEN
+        // WHEN
         Optional<OrderColor> result = orderColorRepository.findFirstByOrderByCreatedAtDesc();
 
-        //THEN
+        // THEN
         assertThat(result.get().getColorCards()).containsExactly(spades, hearts, diamonds, clubs);
     }
 
@@ -60,10 +60,10 @@ class OrderColorRepositoryTest {
         orderColor2.setCreatedAt(ZonedDateTime.now().plusDays(1));
         orderColorRepository.save(orderColor2);
 
-        //WHEN
+        // WHEN
         Optional<OrderColor> result = orderColorRepository.findFirstByOrderByCreatedAtDesc();
 
-        //THEN
+        // THEN
         assertThat(result.get().getCreatedAt()).isAfter(orderColor1.getCreatedAt());
 
     }
