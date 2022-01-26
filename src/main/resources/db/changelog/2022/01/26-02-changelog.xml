@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
+
+
+    <changeSet id="2022-01-22_insert-value-cards" author="jerem">
+        <insert tableName="value_card">
+            <column name="value" value="ACE"/>
+            <column name="rank" value="1"/>
+        </insert>
+        <insert tableName="value_card">
+            <column name="value" value="TWO"/>
+            <column name="rank" value="2"/>
+        </insert>
+        <insert tableName="value_card">
+            <column name="value" value="THREE"/>
+            <column name="rank" value="3"/>
+        </insert>
+        <insert tableName="value_card">
+            <column name="value" value="FOUR"/>
+            <column name="rank" value="4"/>
+        </insert>
+        <insert tableName="value_card">
+            <column name="value" value="FIVE"/>
+            <column name="rank" value="5"/>
+        </insert>
+        <insert tableName="value_card">
+            <column name="value" value="SIX"/>
+            <column name="rank" value="6"/>
+        </insert>
+        <insert tableName="value_card">
+            <column name="value" value="SEVEN"/>
+            <column name="rank" value="7"/>
+        </insert>
+        <insert tableName="value_card">
+            <column name="value" value="EIGHT"/>
+            <column name="rank" value="8"/>
+        </insert>
+        <insert tableName="value_card">
+            <column name="value" value="NINE"/>
+            <column name="rank" value="9"/>
+        </insert>
+        <insert tableName="value_card">
+            <column name="value" value="TEN"/>
+            <column name="rank" value="10"/>
+        </insert>
+        <insert tableName="value_card">
+            <column name="value" value="JACK"/>
+            <column name="rank" value="11"/>
+        </insert>
+        <insert tableName="value_card">
+            <column name="value" value="QUEEN"/>
+            <column name="rank" value="12"/>
+        </insert>
+        <insert tableName="value_card">
+            <column name="value" value="KING"/>
+            <column name="rank" value="13"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="2022-01-22_insert-color-cards" author="jerem">
+        <insert tableName="color_card">
+            <column name="color" value="DIAMONDS"/>
+            <column name="rank" value="1"/>
+        </insert>
+        <insert tableName="color_card">
+            <column name="color" value="SPADES"/>
+            <column name="rank" value="2"/>
+        </insert>
+        <insert tableName="color_card">
+            <column name="color" value="CLUBS"/>
+            <column name="rank" value="3"/>
+        </insert>
+        <insert tableName="color_card">
+            <column name="color" value="HEARTS"/>
+            <column name="rank" value="4"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="2022-01-22_insert-cards" author="jerem">
+        <insert tableName="card">
+            <column name="color_card" value="SPADES"/>
+            <column name="value_card" value="ACE"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="SPADES"/>
+            <column name="value_card" value="TWO"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="SPADES"/>
+            <column name="value_card" value="THREE"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="SPADES"/>
+            <column name="value_card" value="FOUR"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="SPADES"/>
+            <column name="value_card" value="FIVE"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="SPADES"/>
+            <column name="value_card" value="SIX"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="SPADES"/>
+            <column name="value_card" value="SEVEN"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="SPADES"/>
+            <column name="value_card" value="EIGHT"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="SPADES"/>
+            <column name="value_card" value="NINE"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="SPADES"/>
+            <column name="value_card" value="TEN"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="SPADES"/>
+            <column name="value_card" value="JACK"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="SPADES"/>
+            <column name="value_card" value="QUEEN"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="SPADES"/>
+            <column name="value_card" value="KING"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="DIAMONDS"/>
+            <column name="value_card" value="ACE"/>
+        </insert>
+
+        <insert tableName="card">
+            <column name="color_card" value="DIAMONDS"/>
+            <column name="value_card" value="TWO"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="DIAMONDS"/>
+            <column name="value_card" value="THREE"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="DIAMONDS"/>
+            <column name="value_card" value="FOUR"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="DIAMONDS"/>
+            <column name="value_card" value="FIVE"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="DIAMONDS"/>
+            <column name="value_card" value="SIX"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="DIAMONDS"/>
+            <column name="value_card" value="SEVEN"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="DIAMONDS"/>
+            <column name="value_card" value="EIGHT"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="DIAMONDS"/>
+            <column name="value_card" value="NINE"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="DIAMONDS"/>
+            <column name="value_card" value="TEN"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="DIAMONDS"/>
+            <column name="value_card" value="JACK"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="DIAMONDS"/>
+            <column name="value_card" value="QUEEN"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="DIAMONDS"/>
+            <column name="value_card" value="KING"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="CLUBS"/>
+            <column name="value_card" value="ACE"/>
+        </insert>
+
+        <insert tableName="card">
+            <column name="color_card" value="CLUBS"/>
+            <column name="value_card" value="TWO"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="CLUBS"/>
+            <column name="value_card" value="THREE"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="CLUBS"/>
+            <column name="value_card" value="FOUR"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="CLUBS"/>
+            <column name="value_card" value="FIVE"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="CLUBS"/>
+            <column name="value_card" value="SIX"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="CLUBS"/>
+            <column name="value_card" value="SEVEN"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="CLUBS"/>
+            <column name="value_card" value="EIGHT"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="CLUBS"/>
+            <column name="value_card" value="NINE"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="CLUBS"/>
+            <column name="value_card" value="TEN"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="CLUBS"/>
+            <column name="value_card" value="JACK"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="CLUBS"/>
+            <column name="value_card" value="QUEEN"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="CLUBS"/>
+            <column name="value_card" value="KING"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="HEARTS"/>
+            <column name="value_card" value="ACE"/>
+        </insert>
+
+        <insert tableName="card">
+            <column name="color_card" value="HEARTS"/>
+            <column name="value_card" value="TWO"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="HEARTS"/>
+            <column name="value_card" value="THREE"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="HEARTS"/>
+            <column name="value_card" value="FOUR"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="HEARTS"/>
+            <column name="value_card" value="FIVE"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="HEARTS"/>
+            <column name="value_card" value="SIX"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="HEARTS"/>
+            <column name="value_card" value="SEVEN"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="HEARTS"/>
+            <column name="value_card" value="EIGHT"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="HEARTS"/>
+            <column name="value_card" value="NINE"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="HEARTS"/>
+            <column name="value_card" value="TEN"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="HEARTS"/>
+            <column name="value_card" value="JACK"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="HEARTS"/>
+            <column name="value_card" value="QUEEN"/>
+        </insert>
+        <insert tableName="card">
+            <column name="color_card" value="HEARTS"/>
+            <column name="value_card" value="KING"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
