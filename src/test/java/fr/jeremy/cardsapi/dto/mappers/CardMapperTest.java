@@ -17,8 +17,8 @@ class CardMapperTest {
         // GIVEN
         Card card = new Card();
         card.setId(1L);
-        card.setColor(new ColorCard("SPADES"));
-        card.setValue(new ValueCard("ACE"));
+        card.setColor(new ColorCard("SPADES", 1));
+        card.setValue(new ValueCard("ACE", 1));
 
         // WHEN
         CardDto cardDto = cardMapper.mapToDto(card);
