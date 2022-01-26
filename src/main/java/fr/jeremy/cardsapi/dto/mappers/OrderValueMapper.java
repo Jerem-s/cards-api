@@ -10,7 +10,8 @@ import java.time.ZonedDateTime;
 import java.util.stream.Collectors;
 
 @Component
-public class OrderValueMapper implements EntityMapper<OrderValueRequest, OrderValue>, DtoMapper<OrderValue, OrderValueResponse> {
+public class OrderValueMapper
+        implements EntityMapper<OrderValueRequest, OrderValue>, DtoMapper<OrderValue, OrderValueResponse> {
     @Override
     public OrderValueResponse mapToDto(OrderValue orderValue) {
         OrderValueResponse orderValueResponse = new OrderValueResponse();
@@ -25,7 +26,8 @@ public class OrderValueMapper implements EntityMapper<OrderValueRequest, OrderVa
     public OrderValue mapToEntity(OrderValueRequest orderValueRequest) {
         OrderValue orderValue = new OrderValue();
         orderValue.setCreatedAt(ZonedDateTime.now());
-        orderValue.setValueCards(orderValueRequest.getValues().stream().map(ValueCard::new).collect(Collectors.toList()));
+        orderValue
+                .setValueCards(orderValueRequest.getValues().stream().map(ValueCard::new).collect(Collectors.toList()));
         return orderValue;
     }
 }

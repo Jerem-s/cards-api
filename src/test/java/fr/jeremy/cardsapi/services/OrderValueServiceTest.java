@@ -74,7 +74,8 @@ class OrderValueServiceTest {
         // THEN
         verify(orderValueRepository).findFirstByOrderByCreatedAtDesc();
         assertThat(orderValueResponse).isNotNull();
-        assertThat(orderValueResponse.getValues()).containsExactly("ACE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE", "TEN", "JACK", "QUEEN", "KING");
+        assertThat(orderValueResponse.getValues()).containsExactly("ACE", "TWO", "THREE", "FOUR", "FIVE", "SIX",
+                "SEVEN", "EIGHT", "NINE", "TEN", "JACK", "QUEEN", "KING");
     }
 
 }

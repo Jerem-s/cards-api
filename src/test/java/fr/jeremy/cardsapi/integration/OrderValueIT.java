@@ -25,7 +25,8 @@ public class OrderValueIT extends AbstractIntegrationConfig {
     void should_create_order_colors() throws Exception {
         // GIVEN
         OrderValueRequest orderValueRequest = new OrderValueRequest();
-        orderValueRequest.setValues(List.of("ACE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE", "TEN", "JACK", "QUEEN", "KING"));
+        orderValueRequest.setValues(List.of("ACE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE",
+                "TEN", "JACK", "QUEEN", "KING"));
 
         // WHEN
         ResultActions perform = this.mockMvc
