@@ -9,57 +9,74 @@
     <changeSet id="2022-01-22_insert-value-cards" author="jerem">
         <insert tableName="value_card">
             <column name="value" value="ACE"/>
+            <column name="rank" value="1"/>
         </insert>
         <insert tableName="value_card">
             <column name="value" value="TWO"/>
+            <column name="rank" value="2"/>
         </insert>
         <insert tableName="value_card">
             <column name="value" value="THREE"/>
+            <column name="rank" value="3"/>
         </insert>
         <insert tableName="value_card">
             <column name="value" value="FOUR"/>
+            <column name="rank" value="4"/>
         </insert>
         <insert tableName="value_card">
             <column name="value" value="FIVE"/>
+            <column name="rank" value="5"/>
         </insert>
         <insert tableName="value_card">
             <column name="value" value="SIX"/>
+            <column name="rank" value="6"/>
         </insert>
         <insert tableName="value_card">
             <column name="value" value="SEVEN"/>
+            <column name="rank" value="7"/>
         </insert>
         <insert tableName="value_card">
             <column name="value" value="EIGHT"/>
+            <column name="rank" value="8"/>
         </insert>
         <insert tableName="value_card">
             <column name="value" value="NINE"/>
+            <column name="rank" value="9"/>
         </insert>
         <insert tableName="value_card">
             <column name="value" value="TEN"/>
+            <column name="rank" value="10"/>
         </insert>
         <insert tableName="value_card">
             <column name="value" value="JACK"/>
+            <column name="rank" value="11"/>
         </insert>
         <insert tableName="value_card">
             <column name="value" value="QUEEN"/>
+            <column name="rank" value="12"/>
         </insert>
         <insert tableName="value_card">
             <column name="value" value="KING"/>
+            <column name="rank" value="13"/>
         </insert>
     </changeSet>
 
     <changeSet id="2022-01-22_insert-color-cards" author="jerem">
         <insert tableName="color_card">
             <column name="color" value="DIAMONDS"/>
+            <column name="rank" value="1"/>
         </insert>
         <insert tableName="color_card">
             <column name="color" value="SPADES"/>
+            <column name="rank" value="2"/>
         </insert>
         <insert tableName="color_card">
             <column name="color" value="CLUBS"/>
+            <column name="rank" value="3"/>
         </insert>
         <insert tableName="color_card">
             <column name="color" value="HEARTS"/>
+            <column name="rank" value="4"/>
         </insert>
     </changeSet>
 

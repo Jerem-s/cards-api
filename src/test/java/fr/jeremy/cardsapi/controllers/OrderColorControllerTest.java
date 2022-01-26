@@ -3,7 +3,8 @@ package fr.jeremy.cardsapi.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.jeremy.cardsapi.dto.request.OrderColorRequest;
 import fr.jeremy.cardsapi.dto.response.OrderColorResponse;
-import fr.jeremy.cardsapi.services.OrderColorService;
+import fr.jeremy.cardsapi.models.ColorCard;
+import fr.jeremy.cardsapi.services.OrderService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -30,7 +31,7 @@ class OrderColorControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private OrderColorService orderColorService;
+    private OrderService orderService;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -42,10 +43,10 @@ class OrderColorControllerTest {
         orderColorRequest.setColors(List.of("SPADES", "DIAMONDS", "HEARTS", "CLUBS"));
 
         OrderColorResponse orderColorResponse = new OrderColorResponse();
-        orderColorResponse.setId(1L);
-        orderColorResponse.setColors(List.of("SPADES", "DIAMONDS", "HEARTS", "CLUBS"));
+        orderColorResponse.setColors(List.of(new ColorCard("SPADES", 1), new ColorCard("DIAMONDS", 2),
+                new ColorCard("HEARTS", 3), new ColorCard("CLUBS", 4)));
 
-        when(orderColorService.save(any(OrderColorRequest.class))).thenReturn(orderColorResponse);
+        when(orderService.saveColors(any(OrderColorRequest.class))).thenReturn(orderColorResponse);
 
         // WHEN
         ResultActions perform = this.mockMvc
@@ -53,26 +54,28 @@ class OrderColorControllerTest {
                         .contentType(MediaType.APPLICATION_JSON_VALUE));
 
         // THEN
-        perform.andExpect(status().isCreated()).andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.colors[0]").value("SPADES")).andExpect(jsonPath("$.colors[1]").value("DIAMONDS"))
-                .andExpect(jsonPath("$.colors[2]").value("HEARTS")).andExpect(jsonPath("$.colors[3]").value("CLUBS"));
+        perform.andExpect(status().isCreated()).andExpect(jsonPath("$.colors[0].color").value("SPADES"))
+                .andExpect(jsonPath("$.colors[1].color").value("DIAMONDS"))
+                .andExpect(jsonPath("$.colors[2].color").value("HEARTS"))
+                .andExpect(jsonPath("$.colors[3].color").value("CLUBS"));
     }
 
     @Test
-    void should_get_last_order_colors() throws Exception {
+    void should_get_order_colors() throws Exception {
         // GIVEN
         OrderColorResponse orderColorResponse = new OrderColorResponse();
-        orderColorResponse.setId(1L);
-        orderColorResponse.setColors(List.of("SPADES", "DIAMONDS", "HEARTS", "CLUBS"));
+        orderColorResponse.setColors(List.of(new ColorCard("ACE", 1), new ColorCard("TWO", 2),
+                new ColorCard("THREE", 3), new ColorCard("FOUR", 4)));
 
-        when(orderColorService.findLast()).thenReturn(orderColorResponse);
+        when(orderService.getOrderColors()).thenReturn(orderColorResponse);
 
         // WHEN
-        ResultActions perform = this.mockMvc.perform(get("/order-colors/last"));
+        ResultActions perform = this.mockMvc.perform(get("/order-colors"));
 
         // THEN
-        perform.andExpect(status().isOk()).andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.colors[0]").value("SPADES")).andExpect(jsonPath("$.colors[1]").value("DIAMONDS"))
-                .andExpect(jsonPath("$.colors[2]").value("HEARTS")).andExpect(jsonPath("$.colors[3]").value("CLUBS"));
+        perform.andExpect(status().isOk()).andExpect(jsonPath("$.colors[0].color").value("ACE"))
+                .andExpect(jsonPath("$.colors[1].color").value("TWO"))
+                .andExpect(jsonPath("$.colors[2].color").value("THREE"))
+                .andExpect(jsonPath("$.colors[3].color").value("FOUR"));
     }
 }

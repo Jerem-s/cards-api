@@ -3,7 +3,8 @@ package fr.jeremy.cardsapi.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.jeremy.cardsapi.dto.request.OrderValueRequest;
 import fr.jeremy.cardsapi.dto.response.OrderValueResponse;
-import fr.jeremy.cardsapi.services.OrderValueService;
+import fr.jeremy.cardsapi.models.ValueCard;
+import fr.jeremy.cardsapi.services.OrderService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -30,7 +31,7 @@ class OrderValueControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private OrderValueService orderValueService;
+    private OrderService orderService;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -39,13 +40,13 @@ class OrderValueControllerTest {
     void should_create_order_values() throws Exception {
         // GIVEN
         OrderValueRequest orderValueRequest = new OrderValueRequest();
-        orderValueRequest.setValues(List.of("ACE", "KING", "TEN", "FIVE"));
+        orderValueRequest.setValues(List.of("ACE", "TWO", "THREE", "FOUR"));
 
         OrderValueResponse orderValueResponse = new OrderValueResponse();
-        orderValueResponse.setId(1L);
-        orderValueResponse.setValues(List.of("ACE", "KING", "TEN", "FIVE"));
+        orderValueResponse.setValues(List.of(new ValueCard("ACE", 1), new ValueCard("TWO", 2),
+                new ValueCard("THREE", 3), new ValueCard("FOUR", 4)));
 
-        when(orderValueService.save(any(OrderValueRequest.class))).thenReturn(orderValueResponse);
+        when(orderService.saveValues(any(OrderValueRequest.class))).thenReturn(orderValueResponse);
 
         // WHEN
         ResultActions perform = this.mockMvc
@@ -53,26 +54,28 @@ class OrderValueControllerTest {
                         .contentType(MediaType.APPLICATION_JSON_VALUE));
 
         // THEN
-        perform.andExpect(status().isCreated()).andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.values[0]").value("ACE")).andExpect(jsonPath("$.values[1]").value("KING"))
-                .andExpect(jsonPath("$.values[2]").value("TEN")).andExpect(jsonPath("$.values[3]").value("FIVE"));
+        perform.andExpect(status().isCreated()).andExpect(jsonPath("$.values[0].value").value("ACE"))
+                .andExpect(jsonPath("$.values[1].value").value("TWO"))
+                .andExpect(jsonPath("$.values[2].value").value("THREE"))
+                .andExpect(jsonPath("$.values[3].value").value("FOUR"));
     }
 
     @Test
-    void should_get_last_order_values() throws Exception {
+    void should_get_order_values() throws Exception {
         // GIVEN
         OrderValueResponse orderValueResponse = new OrderValueResponse();
-        orderValueResponse.setId(1L);
-        orderValueResponse.setValues(List.of("ACE", "KING", "TEN", "FIVE"));
+        orderValueResponse.setValues(List.of(new ValueCard("ACE", 1), new ValueCard("TWO", 2),
+                new ValueCard("THREE", 3), new ValueCard("FOUR", 4)));
 
-        when(orderValueService.findLast()).thenReturn(orderValueResponse);
+        when(orderService.getOrderValues()).thenReturn(orderValueResponse);
 
         // WHEN
-        ResultActions perform = this.mockMvc.perform(get("/order-values/last"));
+        ResultActions perform = this.mockMvc.perform(get("/order-values"));
 
         // THEN
-        perform.andExpect(status().isOk()).andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.values[0]").value("ACE")).andExpect(jsonPath("$.values[1]").value("KING"))
-                .andExpect(jsonPath("$.values[2]").value("TEN")).andExpect(jsonPath("$.values[3]").value("FIVE"));
+        perform.andExpect(status().isOk()).andExpect(jsonPath("$.values[0].value").value("ACE"))
+                .andExpect(jsonPath("$.values[1].value").value("TWO"))
+                .andExpect(jsonPath("$.values[2].value").value("THREE"))
+                .andExpect(jsonPath("$.values[3].value").value("FOUR"));
     }
 }
