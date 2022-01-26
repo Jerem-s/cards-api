@@ -26,12 +26,12 @@ public class OrderValueService {
         return orderValueMapper.mapToDto(save);
     }
 
-
     public OrderValueResponse findLast() {
         return this.orderValueRepository.findFirstByOrderByCreatedAtDesc().map(orderValueMapper::mapToDto)
                 .orElseGet(() -> {
                     OrderValueResponse orderValueResponse = new OrderValueResponse();
-                    orderValueResponse.setValues(List.of("ACE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE", "TEN", "JACK", "QUEEN", "KING"));
+                    orderValueResponse.setValues(List.of("ACE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT",
+                            "NINE", "TEN", "JACK", "QUEEN", "KING"));
                     return orderValueResponse;
                 });
     }
