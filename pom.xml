@@ -10,7 +10,7 @@
     </parent>
     <groupId>fr.jeremy</groupId>
     <artifactId>cards-api</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>cards-api</name>
     <description>cards-api</description>
     <properties>
