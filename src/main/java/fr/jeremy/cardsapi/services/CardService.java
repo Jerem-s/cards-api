@@ -28,7 +28,7 @@ public class CardService {
     public CardResponse getHand() {
 
         Set<CardDto> cards = new HashSet<>();
-        while (cards.size() < cardRepository.count() || cards.size() < 10) {
+        while (cards.size() < 10) {
             Card card = findRandomCard();
             CardDto cardDto = cardMapper.mapToDto(card);
             cards.add(cardDto);
